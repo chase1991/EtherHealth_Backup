@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+<%= form_for(@question) do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.text_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :race %><br>
+    <%= f.text_field :race %>
+  </div>
+  <div class="field">
+    <%= f.label :smoking_status %><br>
+    <%= f.text_field :smoking_status %>
+  </div>
+  <div class="field">
+    <%= f.label :immunocompromised %><br>
+    <%= f.text_field :immunocompromised %>
+  </div>
+  <div class="field">
+    <%= f.label :renal_impairment %><br>
+    <%= f.text_field :renal_impairment %>
+  </div>
+  <div class="field">
+    <%= f.label :pregnancy %><br>
+    <%= f.text_field :pregnancy %>
+  </div>
+  <div class="field">
+    <%= f.label :tag %><br>
+    <%= f.text_field :tag %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+</div>

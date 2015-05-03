@@ -1,0 +1,120 @@
+<% provide(:title, "Asking") %>
+
+<div class="jumbotron">
+	<div class="container-fluid">
+		<div class="form-group">
+ 	 		<label for="question">Post your questions here</label>
+  			<textarea class="form-control" rows="10" id="question"></textarea>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="age">AGE</label>
+					<select class="form-control" id="age">
+						<option><%= @age_filter[0].subtype %></option>
+						<option><%= @age_filter[1].subtype %></option>
+						<option><%= @age_filter[2].subtype %></option>
+						<option><%= @age_filter[3].subtype %></option>
+						<option><%= @age_filter[4].subtype %></option>
+						<option><%= @age_filter[5].subtype %></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="gender">GENDER</label>
+					<select class="form-control" id="gender">
+						<option><%= @gender_filter[0].subtype %></option>
+						<option><%= @gender_filter[1].subtype %></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="race">RACE</label>
+					<select class="form-control" id="race">
+						<option><%= @race_filter[0].subtype %></option>
+						<option><%= @race_filter[1].subtype %></option>
+						<option><%= @race_filter[2].subtype %></option>
+						<option><%= @race_filter[3].subtype %></option>
+						<option><%= @race_filter[4].subtype %></option>
+						<option><%= @race_filter[5].subtype %></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="smoking">SMOKING STATUS</label>
+					<select class="form-control" id="smoking">
+						<option><%= @smoking_filter[0].subtype %></option>
+						<option><%= @smoking_filter[1].subtype %></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="immu">IMMUNOCOMPROMISED</label>
+					<select class="form-control" id="immu">
+						<option><%= @immu_filter[0].subtype %></option>
+						<option><%= @immu_filter[1].subtype %></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="immu">IMMUNOCOMPROMISED</label>
+					<select class="form-control" id="immu">
+						<option><%= @immu_filter[0].subtype %></option>
+						<option><%= @immu_filter[1].subtype %></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="renal">RENAL IMPAIRMENT</label>
+					<select class="form-control" id="renal">
+						<option><%= @renal_filter[0].subtype %></option>
+						<option><%= @renal_filter[1].subtype %></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="preg">PREGNANCY</label>
+					<select class="form-control" id="preg">
+						<option><%= @preg_filter[0].subtype %></option>
+						<option><%= @preg_filter[1].subtype %></option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="tag">TAG</label>
+					<select class="form-control" id="tag">
+						<option><%= @tags[0].name %></option>
+						<option><%= @tags[1].name %></option>
+						<option><%= @tags[2].name %></option>
+					</select>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+</div>
+
+<!--add submit button-->
+<div class="btn btn-success">Submit</div>
+

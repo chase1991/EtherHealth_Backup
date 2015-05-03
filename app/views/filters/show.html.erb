@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ftype:</strong>
+  <%= @filter.ftype %>
+</p>
+
+<p>
+  <strong>Subtype:</strong>
+  <%= @filter.subtype %>
+</p>
+
+<%= link_to 'Edit', edit_filter_path(@filter) %> |
+<%= link_to 'Back', filters_path %>

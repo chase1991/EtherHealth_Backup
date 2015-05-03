@@ -1,0 +1,126 @@
+<% provide(:title, "Asking") %>
+
+<%= form_tag("/ask", method: "get") %>
+<div class="jumbotron">
+
+	<div class="container-fluid">
+		<div class="form-group">
+ 	 		<label for="question">Post your questions here</label>
+  			<%= text_area_tag(:question, "", size: "24x12") %>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					
+					<label for="age">AGE</label>
+					<%= select_tag :age, options_from_collection_for_select(@age_filter, 'subtype', 'subtype') %>
+
+					
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="gender">GENDER</label>
+					<%= select_tag :gender, options_from_collection_for_select(@gender_filter, 'subtype', 'subtype') %>
+
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="race">RACE</label>
+					<%= select_tag :race, options_from_collection_for_select(@race_filter, 'subtype', 'subtype') %>
+
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="smoking">SMOKING STATUS</label>
+					<%= select_tag :smoking, options_from_collection_for_select(@smoking_filter, 'subtype', 'subtype') %>
+
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="immu">IMMUNOCOMPROMISED</label>
+					<%= select_tag :immu, options_from_collection_for_select(@immu_filter, 'subtype', 'subtype') %>
+
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="renal">RENAL IMPAIRMENT</label>
+					<%= select_tag :renal, options_from_collection_for_select(@renal_filter, 'subtype', 'subtype') %>
+
+				</div>
+			</div>
+
+			<div class="col-xs-4">
+				<div class="form-group">
+					<label for="preg">PREGNANCY</label>
+					<%= select_tag :preg, options_from_collection_for_select(@preg_filter, 'subtype', 'subtype') %>
+
+				</div>
+			</div>
+
+			<!--<div class="col-xs-4">
+				<div class="form-group">
+					<label for="tag">TAG</label>
+					<select class="form-control" id="tag">
+						<% @tags.each do |tag| %>
+							<option><%= tag.name %></option>
+						<% end %>
+					</select>
+				</div>
+			</div> -->
+ 
+
+			
+		</div>
+	</div>
+	
+</div>
+
+<!--add submit button-->
+<div class="jumbotron">
+	<div class="container-fluid">
+		<label>Which pool(s) would you like to send?</label>
+		<br><input type="text" value="Heart Disease, Obesity" data-role="tagsinput" />
+<script>
+var citynames = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: {
+    url: '/json/tags.json',
+    filter: function(list) {
+      return $.map(list, function(cityname) {
+        return { name: cityname }; });
+    }
+  }
+});
+citynames.initialize();
+
+$('input').tagsinput({
+  typeaheadjs: {
+    name: 'citynames',
+    displayKey: 'name',
+    valueKey: 'name',
+    source: citynames.ttAdapter()
+  }
+});
+</script>
+	</div>
+</div>
+
+
+
+<%= submit_tag "Submit", :class => "btn btn-success" %>
+
