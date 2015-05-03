@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502012009) do
+ActiveRecord::Schema.define(version: 20150503172543) do
 
   create_table "answers", force: :cascade do |t|
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "question_id"
   end
 
   create_table "filters", force: :cascade do |t|
@@ -38,6 +39,8 @@ ActiveRecord::Schema.define(version: 20150502012009) do
     t.string   "tag"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "user_id"
+    t.integer  "answer_id"
   end
 
   create_table "tags", force: :cascade do |t|

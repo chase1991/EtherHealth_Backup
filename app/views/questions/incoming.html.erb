@@ -1,0 +1,19 @@
+<form>
+	<% index = 0 %>
+	<% @questions.each do |q| %>
+		<div class="jumbotron">
+			<div class="text-center">
+				<p><b>Question</b></p>
+			</div>
+			<i><%= q.description %></i>
+			<div class="text-center">
+				<br><p><b>Post your answer here</b></p>
+			</div>
+			<%= text_area_tag(@ids[index].to_s, "", size: "24x12") %>
+		</div>
+	<% index += 1 %>
+	<% end %> 
+	<div class="text-center">
+		<button type="submit" class="btn btn-success btn-lg">Submit</button>
+	</div>
+</form>

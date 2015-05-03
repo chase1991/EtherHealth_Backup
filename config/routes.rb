@@ -42,12 +42,13 @@ Rails.application.routes.draw do
   post 'show' => 'questions#show'
 
   get 'outgoing' => 'questions#outgoing'
+  get 'incoming' => 'questions#incoming'
 
  # post 'submit' => 'ask_question#create'
 
  # get 'ask' => 'ask_question#ask'
 
- get 'ask' => 'questions#new'
+  get 'ask' => 'questions#new'
  
   delete 'logout' => 'session#destroy'
   # The priority is based upon order of creation: first created -> highest priority.

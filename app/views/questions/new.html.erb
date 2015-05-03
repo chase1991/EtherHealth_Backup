@@ -1,6 +1,6 @@
 <% provide(:title, "Asking") %>
 
-<%= form_tag("/ask", method: "get") %>
+<form>
 <div class="jumbotron">
 
 	<div class="container-fluid">
@@ -87,10 +87,7 @@
 		</div>
 	</div>
 	
-</div>
 
-<!--add submit button-->
-<div class="jumbotron">
 	<div class="container-fluid">
 		<label>Which pool(s) would you like to send?</label>
 		<br><input type="text" value="Heart Disease, Obesity" data-role="tagsinput" />
@@ -116,11 +113,17 @@ $('input').tagsinput({
     source: citynames.ttAdapter()
   }
 });
+
 </script>
 	</div>
 </div>
 
 
+<div class="text-center">
+	<button type="submit" class="btn btn-success btn-lg">Submit</button>
+</div>
+</form>
 
-<%= submit_tag "Submit", :class => "btn btn-success" %>
+
+
 

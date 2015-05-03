@@ -16,6 +16,25 @@ class QuestionsController < ApplicationController
     
   end
 
+  def incoming
+    @questions = Question.where("user_id = ?", 19)
+    index = 0
+    @ids = []
+    @questions.each do |q|
+      index += 1
+      @ids << q.id
+    end
+
+    @ids.each do |i|
+      if (params[i.to_s] != "")
+        a = Answer.new
+        a.description = params[i.to_s]
+        a.question_id = i.to_s
+        a.save
+      end
+    end
+  end
+
   # GET /questions/new
   def new
     @age_filter = Filter.where("ftype = ?", "AGE")
@@ -46,7 +65,7 @@ class QuestionsController < ApplicationController
       q.immunocompromised = flash[:immu]
       q.renal_impairment = flash[:renal]
       q.pregnancy = flash[:preg]
-      #q.user.id = @current_user.id
+      q.user = current_user
       q.save
 
       redirect_to "/outgoing"
