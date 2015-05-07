@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 #gem 'pg'
 
 # Use SCSS for stylesheets
@@ -54,6 +53,13 @@ group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+end
+
+group :production do
+	gem 'pg'
+	gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
