@@ -1,4 +1,6 @@
-
+<% if (@questions.count == 0) %>
+	<p>You have not asked any question</p>
+<% else %>
 
 <form>
 	<% index = 0 %>
@@ -50,7 +52,7 @@
 						<p><b>Answers</b></p>
 					</div>
 					<% answers.each do |answer| %>
-						<b><%= answer.user_id %></b>
+						<b><%= User.where("id = ?", answer.user_id).take.username %>: </b>
 						<b><i><%= answer.description %></i></b>
 						<br>
 					<% end %>
@@ -70,3 +72,4 @@
 		<button type="submit" class="btn btn-success btn-lg">Submit</button>
 	</div>
 </form>
+<% end %>

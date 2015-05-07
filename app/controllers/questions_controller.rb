@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
   end
 
   def incoming
-    @questions = Question.where("user_id = ?", 19)
+    @questions = Question.where("user_id = ?", current_user.id)
     index = 0
     @ids = []
     @questions.each do |q|

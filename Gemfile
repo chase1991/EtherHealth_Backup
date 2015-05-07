@@ -20,6 +20,10 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'bcrypt', '3.1.7'
 
+gem 'carrierwave',             '0.10.0'
+gem 'mini_magick',             '3.8.0'
+gem 'fog',                     '1.23.0'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
