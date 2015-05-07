@@ -1,47 +1,62 @@
-<div class="jumbotron">
+<form>
+	<% index = 0 %>
+	<% @questions.each do |q| %>
+		<div class="jumbotron">
+			<div class="text-center">
+				<p><b>Question</b></p>
+			</div>
+			<i><b><%= q.description %></b></i>
+			<br><% if q.age != "" %>
+				<b>Age:</b><%= q.age %>&nbsp;&nbsp;&nbsp;
+			<% end %>
 
-	<div class="container-fluid">
-		<div class="form-group">
-			<label>QUESTION</label>
-			<p><%= flash[:question] %></p>
-		</div><br>
+			<% if q.gender != "" %>
+				<b>Gender:</b><%= q.gender %>&nbsp;&nbsp;&nbsp;
+			<% end %>
 
-		<div class="form-group">
-			<label>AGE</label>
-			<p><%= flash[:age] %></p>
-		</div><br>
+			<% if q.race != "" %>
+				<b>Race:</b><%= q.race %>&nbsp;&nbsp;&nbsp;
+			<% end %>
 
-		<br><div class="form-group">
-			<label>GENDER</label>
-			<p><%= flash[:gender] %></p>
-		</div></br>
+			<% if q.smoking_status != "" %>
+				<b>Smoking Status:</b><%= q.smoking_status %>&nbsp;&nbsp;&nbsp;
+			<% end %>
 
-		<br><div class="form-group">
-			<label>RACE</label>
-			<p><%= flash[:race] %></p>
-		</div></br>
+			<% if q.immunocompromised != "" %>
+				<b>Immunocompromised:</b><%= q.immunocompromised %>&nbsp;&nbsp;&nbsp;
+			<% end %>
 
-		<br><div class="form-group">
-			<label>SMOKING STATUS</label>
-			<p><%= flash[:smoking] %></p>
-		</div></br>
+			<% if q.renal_impairment != "" %>
+				<b>Renal Impairment:</b><%= q.renal_impairment %>&nbsp;&nbsp;&nbsp;
+			<% end %>
 
-		<br><div class="form-group">
-			<label>IMMUNOCOMPROMISED</label>
-			<p><%= flash[:immu] %></p>
-		</div></br>
+			<% if q.pregnancy != "" %>
+				<b>Pregnancy:</b><%= q.pregnancy %>
+			<% end %>
+			<br><div class="text-right">
+				Created at <%= q.created_at.in_time_zone('Eastern Time (US & Canada)').to_s[0, 19] %>
+			</div>
 
-		<br><div class="form-group">
-			<label>RENAL IMPAIRMENT</label>
-			<p><%= flash[:renal] %></p>
-		</div></br>
+			<!-- answers are here -->
+			<% answers = Answer.where("question_id = ?", q.id) %>
+			<% if (answers.count != 0) %>
+				<br><div class="text-center">
+					<p><b>Answers</b></p>
+				</div>
+				<% answers.each do |answer| %>
+					<b><%= answer.user_id %></b>
+					<b><i><%= answer.description %></i></b>
+				<% end %>
+			<% end %>
 
-		<br><div class="form-group">
-			<label>PREGNANCY</label>
-			<p><%= flash[:preg] %></p>
-		</div></br>
+			<div class="text-center">
+				<br><p><b>Post your answer here</b></p>
+			</div>
+			<%= text_area_tag(@ids[index].to_s, "", size: "24x12") %>
+		</div>
+	<% index += 1 %>
+	<% end %> 
+	<div class="text-center">
+		<button type="submit" class="btn btn-success btn-lg">Submit</button>
 	</div>
-
-</div>
-
-	
+</form>

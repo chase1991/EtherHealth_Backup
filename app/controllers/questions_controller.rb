@@ -13,7 +13,24 @@ class QuestionsController < ApplicationController
   end
 
   def outgoing
-    
+    @questions = Question.where("user_id = ?", current_user.id)
+    index = 0
+    @ids = []
+    @questions.each do |q|
+      index += 1
+      @ids << q.id
+    end
+
+    # record each answer
+    @ids.each do |i|
+      if (params[i.to_s] != "")
+        a = Answer.new
+        a.description = params[i.to_s]
+        a.question_id = i.to_s
+        a.user_id = current_user.id
+        a.save
+      end
+    end
   end
 
   def incoming
@@ -30,6 +47,7 @@ class QuestionsController < ApplicationController
         a = Answer.new
         a.description = params[i.to_s]
         a.question_id = i.to_s
+        a.user_id = current_user.id
         a.save
       end
     end
@@ -37,34 +55,26 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @age_filter = Filter.where("ftype = ?", "AGE")
-    @gender_filter = Filter.where("ftype = ?", "GENDER")
-    @race_filter = Filter.where("ftype = ?", "RACE")
-    @smoking_filter = Filter.where("ftype = ?", "SMOKING STATUS")
-    @immu_filter = Filter.where("ftype = ?", "IMMUNOCOMPROMISED")
-    @renal_filter = Filter.where("ftype = ?", "RENAL IMPAIRMENT")
-    @preg_filter = Filter.where("ftype = ?", "PREGNANCY")
+    @age_filter = Filter.where("ftype = ?", "AGE").order("subtype")
+    @gender_filter = Filter.where("ftype = ?", "GENDER").order("subtype")
+    @race_filter = Filter.where("ftype = ?", "RACE").order("subtype")
+    @smoking_filter = Filter.where("ftype = ?", "SMOKING STATUS").order("subtype")
+    @immu_filter = Filter.where("ftype = ?", "IMMUNOCOMPROMISED").order("subtype")
+    @renal_filter = Filter.where("ftype = ?", "RENAL IMPAIRMENT").order("subtype")
+    @preg_filter = Filter.where("ftype = ?", "PREGNANCY").order("subtype")
     @tags = Tag.all
     @question = Question.new
     if (params[:question] != nil) 
-      flash[:question] = params[:question]
-      flash[:age] = params[:age]
-      flash[:gender] = params[:gender]
-      flash[:race] = params[:race]
-      flash[:smoking] = params[:smoking]
-      flash[:immu] = params[:immu]
-      flash[:renal] = params[:renal]
-      flash[:preg] = params[:preg]
 
       q = Question.new
-      q.description = flash[:question]
-      q.age = flash[:age]
-      q.gender = flash[:gender]
-      q.race = flash[:race]
-      q.smoking_status = flash[:smoking]
-      q.immunocompromised = flash[:immu]
-      q.renal_impairment = flash[:renal]
-      q.pregnancy = flash[:preg]
+      q.description = params[:question]
+      q.age = params[:age]
+      q.gender = params[:gender]
+      q.race = params[:race]
+      q.smoking_status = params[:smoking]
+      q.immunocompromised = params[:immu]
+      q.renal_impairment = params[:renal]
+      q.pregnancy = params[:preg]
       q.user = current_user
       q.save
 

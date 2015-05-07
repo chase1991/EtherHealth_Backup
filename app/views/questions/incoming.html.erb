@@ -5,7 +5,50 @@
 			<div class="text-center">
 				<p><b>Question</b></p>
 			</div>
-			<i><%= q.description %></i>
+			<i><b><%= q.description %></b></i>
+			<br><% if q.age != "" %>
+				<b>Age:</b><%= q.age %>&nbsp;&nbsp;&nbsp;
+			<% end %>
+
+			<% if q.gender != "" %>
+				<b>Gender:</b><%= q.gender %>&nbsp;&nbsp;&nbsp;
+			<% end %>
+
+			<% if q.race != "" %>
+				<b>Race:</b><%= q.race %>&nbsp;&nbsp;&nbsp;
+			<% end %>
+
+			<% if q.smoking_status != "" %>
+				<b>Smoking Status:</b><%= q.smoking_status %>&nbsp;&nbsp;&nbsp;
+			<% end %>
+
+			<% if q.immunocompromised != "" %>
+				<b>Immunocompromised:</b><%= q.immunocompromised %>&nbsp;&nbsp;&nbsp;
+			<% end %>
+
+			<% if q.renal_impairment != "" %>
+				<b>Renal Impairment:</b><%= q.renal_impairment %>&nbsp;&nbsp;&nbsp;
+			<% end %>
+
+			<% if q.pregnancy != "" %>
+				<b>Pregnancy:</b><%= q.pregnancy %>
+			<% end %>
+			<br><div class="text-right">
+				Created at <%= q.created_at.in_time_zone('Eastern Time (US & Canada)').to_s[0, 19] %>
+			</div>
+
+			<!-- answers are here -->
+			<% answers = Answer.where("question_id = ?", q.id) %>
+			<% if (answers.count != 0) %>
+				<br><div class="text-center">
+					<p><b>Answers</b></p>
+				</div>
+				<% answers.each do |answer| %>
+					<b><%= answer.user_id %></b>
+					<b><i><%= answer.description %></i></b>
+				<% end %>
+			<% end %>
+			
 			<div class="text-center">
 				<br><p><b>Post your answer here</b></p>
 			</div>
